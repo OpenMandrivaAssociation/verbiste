@@ -2,8 +2,8 @@
 # PLEASE DO NOT UPLOAD DIRECTLY BEFORE COMMIT
 
 %define name         verbiste
-%define version      0.1.19
-%define release      %mkrel 2
+%define version      0.1.21
+%define release      %mkrel 1
 %define __libtoolize /bin/true
 %define __cputoolize /bin/true
 
@@ -23,21 +23,21 @@ BuildRequires: libgnomeui2-devel gnome-panel-devel
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 %description
-Verbiste is a French conjugation system. It contains a C++ library, two 
-programs that can be run from the command line or from another program, 
-and a GNOME applet. This applet shows a text field in the GNOME Panel 
-where the user can enter a conjugated verb and obtain its complete 
-conjugation. The knowledge base is represented in XML and contains over 
+Verbiste is a French conjugation system. It contains a C++ library, two
+programs that can be run from the command line or from another program,
+and a GNOME applet. This applet shows a text field in the GNOME Panel
+where the user can enter a conjugated verb and obtain its complete
+conjugation. The knowledge base is represented in XML and contains over
 6800 verbs.
 
 %files -f %{name}.lang
-%defattr(-,root,root) 
-%doc AUTHORS COPYING HACKING INSTALL LISEZMOI NEWS  README TODO
+%defattr(-,root,root)
+%{_docdir}/%{name}-%{version}/*
+#AUTHORS COPYING HACKING INSTALL LISEZMOI NEWS  README TODO THANKS
 %_bindir/french-*conjugator
 %_datadir/%name-0.1
 %_mandir/fr/man?/*
 %_mandir/man?/*
-
 
 #--------------------------------------------------------------------
 
@@ -67,10 +67,10 @@ Group:          Development/Other
 %description  -n %{libname}
 Shared Librairies for cluster
 
-%postun -n %{libname} 
+%postun -n %{libname}
 /sbin/ldconfig
 
-%post -n %{libname} 
+%post -n %{libname}
 /sbin/ldconfig
 
 %files -n %{libname}
@@ -116,5 +116,3 @@ rm -rf %buildroot
 %find_lang %{name}
 %clean
 rm -rf %{buildroot}
-
-
