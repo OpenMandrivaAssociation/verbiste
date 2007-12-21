@@ -20,6 +20,7 @@ Group:     Toys
 Source:    http://www3.sympatico.ca/sarrazip/dev/%{name}-%{version}.tar.bz2
 BuildRequires: libxml2-devel
 BuildRequires: libgnomeui2-devel gnome-panel-devel
+BuildRoot: %{_tmppath}/%{name}-buildroot
 
 %description
 Verbiste is a French conjugation system. It contains a C++ library, two
