@@ -67,11 +67,9 @@ Group:          Development/Other
 %description  -n %{libname}
 Shared Librairies for cluster
 
-%postun -n %{libname}
-/sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%post -n %{libname}
-/sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
 %files -n %{libname}
 %defattr(-,root,root)
