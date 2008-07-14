@@ -1,6 +1,6 @@
 %define name         verbiste
 %define version      0.1.23
-%define release      %mkrel 1
+%define release      %mkrel 2
 %define __libtoolize /bin/true
 %define __cputoolize /bin/true
 
@@ -41,6 +41,7 @@ conjugation. The knowledge base is represented in XML and contains over
 %package -n     %name-gtk
 Summary:        Gtk+ interface for %name
 Group:          Development/Other
+Requires:       %name 
 
 %description  -n %name-gtk
 Gtk+ interface for %name.
