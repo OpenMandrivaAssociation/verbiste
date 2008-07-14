@@ -1,8 +1,5 @@
-# THIS PACKAGE IS HOSTED AT MANDRIVA SVN
-# PLEASE DO NOT UPLOAD DIRECTLY BEFORE COMMIT
-
 %define name         verbiste
-%define version      0.1.21
+%define version      0.1.23
 %define release      %mkrel 1
 %define __libtoolize /bin/true
 %define __cputoolize /bin/true
@@ -15,9 +12,9 @@ Version:   %{version}
 Release:   %{release}
 Summary:   To use well french verbs
 License:   GPL
-URL:       http://www3.sympatico.ca/sarrazip/dev/%name.html
+URL:       http://perso.b2b2c.ca/sarrazip/dev/%name.html
 Group:     Toys
-Source:    http://www3.sympatico.ca/sarrazip/dev/%{name}-%{version}.tar.bz2
+Source:    http://www3.sympatico.ca/sarrazip/dev/%{name}-%{version}.tar.gz
 BuildRequires: libxml2-devel
 BuildRequires: libgnomeui2-devel gnome-panel-devel
 BuildRoot: %{_tmppath}/%{name}-buildroot
@@ -95,12 +92,7 @@ This package contains header files and static libraries.
 
 %files -n %{libname}-devel
 %defattr(-,root,root)
-%_includedir/%name-0.1/%name/FrenchVerbDictionary.h
-%_includedir/%name-0.1/%name/HashMap.h
-%_includedir/%name-0.1/%name/Trie.cpp
-%_includedir/%name-0.1/%name/Trie.h
-%_includedir/%name-0.1/%name/c-api.h
-%_includedir/%name-0.1/%name/misc-types.h
+%_includedir/%name-0.1
 %_libdir/lib%name-0.1.so
 %_libdir/pkgconfig/%name-0.1.pc
 
