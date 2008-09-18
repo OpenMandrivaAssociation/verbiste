@@ -11,7 +11,7 @@ Name:      %{name}
 Version:   %{version}
 Release:   %{release}
 Summary:   To use well french verbs
-License:   GPL
+License:   GPLv2+
 URL:       http://perso.b2b2c.ca/sarrazip/dev/%name.html
 Group:     Toys
 Source:    http://www3.sympatico.ca/sarrazip/dev/%{name}-%{version}.tar.gz
