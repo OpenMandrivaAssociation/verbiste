@@ -1,6 +1,6 @@
 %define name         verbiste
 %define version      0.1.23
-%define release      %mkrel 2
+%define release      %mkrel 1
 %define __libtoolize /bin/true
 %define __cputoolize /bin/true
 
@@ -16,7 +16,9 @@ URL:       http://perso.b2b2c.ca/sarrazip/dev/%name.html
 Group:     Toys
 Source:    http://www3.sympatico.ca/sarrazip/dev/%{name}-%{version}.tar.gz
 BuildRequires: libxml2-devel
-BuildRequires: libgnomeui2-devel gnome-panel-devel
+BuildRequires: libgnomeui2-devel 
+BuildRequires: gnome-panel-devel
+BuildRequires: libglade2-devel
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 %description
