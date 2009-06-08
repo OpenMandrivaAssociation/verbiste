@@ -1,5 +1,5 @@
 %define name         verbiste
-%define version      0.1.24
+%define version      0.1.25
 %define release      %mkrel 1
 
 %define major   1
@@ -13,7 +13,6 @@ License:   GPLv2+
 URL:       http://perso.b2b2c.ca/sarrazip/dev/%name.html
 Group:     Toys
 Source:    http://www3.sympatico.ca/sarrazip/dev/%{name}-%{version}.tar.gz
-Patch0:    verbiste-0.1.24-string-format.patch
 BuildRequires: libxml2-devel
 BuildRequires: libgnomeui2-devel 
 BuildRequires: gnome-panel-devel
@@ -102,8 +101,6 @@ This package contains header files and static libraries.
 %prep
 
 %setup -q -n %{name}-%{version}
-
-%patch0 -p1 -b .stfmt
 
 # Build with libtool 2.2
 autoreconf -f
