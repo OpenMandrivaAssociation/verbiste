@@ -1,5 +1,5 @@
 %define name         verbiste
-%define version      0.1.25
+%define version      0.1.26
 %define release      %mkrel 1
 
 %define major   1
@@ -54,6 +54,8 @@ Gtk+ interface for %name.
 %_libdir/verbiste-applet
 %_datadir/applications/verbiste.desktop
 %_datadir/pixmaps/verbiste.png
+%_datadir/texmf/tex/latex/verbiste/verbiste.cfg
+%_datadir/texmf/tex/latex/verbiste/verbiste.cls
 
 
 #--------------------------------------------------------------------
@@ -102,11 +104,7 @@ This package contains header files and static libraries.
 
 %setup -q -n %{name}-%{version}
 
-# Build with libtool 2.2
-autoreconf -f
-libtoolize
-
-%configure --with-gtk-app --with-gnome-app --with-gnome-applet
+%configure2_5x --with-gtk-app --with-gnome-app --with-gnome-applet
 
 %install
 rm -rf %buildroot
