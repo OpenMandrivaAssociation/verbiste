@@ -1,23 +1,20 @@
-%define name         verbiste
-%define version      0.1.26
-%define release      %mkrel 1
-
 %define major   1
-%define libname %mklibname %name %major
+%define libname %mklibname %{name} %{major}
+%define devname %mklibname -d %{name}
 
-Name:      %{name}
-Version:   %{version}
-Release:   %{release}
-Summary:   To use well french verbs
-License:   GPLv2+
-URL:       http://perso.b2b2c.ca/sarrazip/dev/%name.html
-Group:     Toys
-Source:    http://www3.sympatico.ca/sarrazip/dev/%{name}-%{version}.tar.gz
-BuildRequires: libxml2-devel
-BuildRequires: libgnomeui2-devel 
-BuildRequires: gnome-panel-devel
-BuildRequires: libglade2-devel
-BuildRoot: %{_tmppath}/%{name}-buildroot
+Name:		verbiste
+Version:	0.1.34
+Release:	1
+Summary:	To use well french verbs
+License:	GPLv2+
+Group:		Toys
+URL:		http://http://perso.b2b2c.ca/sarrazip/dev/verbiste.html
+Source0:	http://perso.b2b2c.ca/sarrazip/dev/%{name}-%{version}.tar.gz
+
+BuildRequires:	pkgconfig(libglade-2.0)
+BuildRequires:	pkgconfig(libgnomeui-2.0)
+BuildRequires:	pkgconfig(libpanelapplet-2.0)
+BuildRequires:	pkgconfig(libxml-2.0)
 
 %description
 Verbiste is a French conjugation system. It contains a C++ library, two
@@ -27,89 +24,68 @@ where the user can enter a conjugated verb and obtain its complete
 conjugation. The knowledge base is represented in XML and contains over
 6800 verbs.
 
-%files -f %{name}.lang
-%defattr(-,root,root)
-%{_docdir}/%{name}-%{version}/*
-#AUTHORS COPYING HACKING INSTALL LISEZMOI NEWS  README TODO THANKS
-%_bindir/french-*conjugator
-%_datadir/%name-0.1
-%_mandir/fr/man?/*
-%_mandir/man?/*
-
-#--------------------------------------------------------------------
-
-%package -n     %name-gtk
-Summary:        Gtk+ interface for %name
+%package -n     %{name}-gtk
+Summary:        Gtk+ interface for %{name}
 Group:          Development/Other
-Requires:       %name 
+Requires:       %{name} 
 
-%description  -n %name-gtk
-Gtk+ interface for %name.
-
-%files -n %name-gtk
-%defattr(-,root,root)
-%_bindir/verbiste
-%_bindir/verbiste-gtk
-%_libdir/bonobo/servers/verbiste.server
-%_libdir/verbiste-applet
-%_datadir/applications/verbiste.desktop
-%_datadir/pixmaps/verbiste.png
-%_datadir/texmf/tex/latex/verbiste/verbiste.cfg
-%_datadir/texmf/tex/latex/verbiste/verbiste.cls
-
-
-#--------------------------------------------------------------------
+%description  -n %{name}-gtk
+Gtk+ interface for %{name}.
 
 %package -n     %{libname}
-Summary:        Shared Librairies for %name
+Summary:        Shared Librairies for %{name}
 Group:          Development/Other
 
 %description  -n %{libname}
 Shared Librairies for cluster
 
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%files -n %{libname}
-%defattr(-,root,root)
-%_libdir/lib%name-0.1.la
-%_libdir/lib%name-0.1.so.0
-%_libdir/lib%name-0.1.so.0.0.0
-
-#--------------------------------------------------------------------
-
-%package -n %{libname}-devel
-Summary:        %name header files and static libraries
+%package -n %{devname}
+Summary:        %{name} header files and static libraries
 Group:          Development/Other
 Requires:       %{name} = %{version}
 Requires:       %{libname} = %{version}
-Provides:       %name-devel = %{version}
+Provides:       %{name}-devel = %{version}
+Obsoletes:	%{_lib}%{name}1-devel
 
-%description -n %{libname}-devel
+%description -n %{devname}
 This package contains header files and static libraries.
 
-%files -n %{libname}-devel
-%defattr(-,root,root)
-%_includedir/%name-0.1
-%_libdir/lib%name-0.1.so
-%_libdir/pkgconfig/%name-0.1.pc
-
-#--------------------------------------------------------------------
 %prep
+%setup -q
 
-%setup -q -n %{name}-%{version}
-
-%configure2_5x --with-gtk-app --with-gnome-app --with-gnome-applet
+%build
+%configure2_5x \
+	--with-gtk-app \
+	--with-gnome-app \
+	--with-gnome-applet
 
 %install
-rm -rf %buildroot
-%{makeinstall_std}
+%makeinstall_std
 
 %find_lang %{name}
-%clean
-rm -rf %{buildroot}
+
+%files -f %{name}.lang
+%{_docdir}/%{name}-%{version}/*
+%{_bindir}/french-*conjugator
+%{_datadir}/%{name}-0.1
+%{_mandir}/fr/man?/*
+%{_mandir}/man?/*
+
+%files -n %{name}-gtk
+%{_bindir}/verbiste
+%{_bindir}/verbiste-gtk
+%{_libdir}/bonobo/servers/verbiste.server
+%{_libdir}/verbiste-applet
+%{_datadir}/applications/verbiste.desktop
+%{_datadir}/pixmaps/verbiste.png
+%{_datadir}/texmf/tex/latex/verbiste/verbiste.cfg
+%{_datadir}/texmf/tex/latex/verbiste/verbiste.cls
+
+%files -n %{libname}
+%{_libdir}/lib%{name}-0.1.so.%{major}*
+
+%files -n %{devname}
+%{_includedir}/%{name}-0.1
+%{_libdir}/lib%{name}-0.1.so
+%{_libdir}/pkgconfig/%{name}-0.1.pc
+
