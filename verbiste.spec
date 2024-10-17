@@ -8,7 +8,7 @@ Release:	1
 Summary:	To use well french verbs
 License:	GPLv2+
 Group:		Toys
-URL:		http://http://perso.b2b2c.ca/sarrazip/dev/verbiste.html
+URL:		https://http://perso.b2b2c.ca/sarrazip/dev/verbiste.html
 Source0:	http://perso.b2b2c.ca/sarrazip/dev/%{name}-%{version}.tar.gz
 
 BuildRequires:	pkgconfig(libglade-2.0)
