@@ -11,6 +11,11 @@ Group:		Toys
 URL:		https://http://perso.b2b2c.ca/sarrazip/dev/verbiste.html
 Source0:	http://perso.b2b2c.ca/sarrazip/dev/%{name}-%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(libglade-2.0)
 BuildRequires:	pkgconfig(libgnomeui-2.0)
 BuildRequires:	pkgconfig(libpanelapplet-2.0)
